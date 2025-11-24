@@ -23,6 +23,18 @@ const MyTripsScreen = ({ navigation }) => {
   const [hasError, setHasError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
+  // Agrega esto al inicio del componente MyTripsScreen
+useEffect(() => {
+  console.log('🔍 DEBUG - Navigator info:');
+  console.log(' - Navigation object:', navigation);
+  console.log(' - Parent:', navigation.getParent());
+  console.log(' - Can navigate to TripDetail:', navigation.canGoBack());
+  
+  // Verificar rutas disponibles
+  const state = navigation.getState();
+  console.log(' - Current routes:', state?.routes?.map(r => r.name));
+}, [navigation]);
+
   useEffect(() => {
     loadTrips();
   }, []);
@@ -90,10 +102,25 @@ const MyTripsScreen = ({ navigation }) => {
     );
   };
 
+  // ✅ FUNCIONES CORREGIDAS DE NAVEGACIÓN
+  const navigateToTripDetail = (trip) => {
+    console.log('🟡 Navegando a TripDetail...');
+    
+    // SOLUCIÓN: Navegación forzada al parent navigator
+    navigation.getParent()?.navigate('TripDetail', { trip });
+  };
+
+  const navigateToEditTrip = (trip) => {
+    console.log('🟡 Navegando a EditTrip...');
+    
+    // SOLUCIÓN: Navegación forzada al parent navigator
+    navigation.getParent()?.navigate('EditTrip', { trip });
+  };
+
   const renderTripItem = ({ item }) => (
     <TouchableOpacity 
       style={styles.tripItem}
-      onPress={() => navigation.navigate('TripDetail', { trip: item })}
+      onPress={() => navigateToTripDetail(item)}
     >
       <View style={styles.tripInfo}>
         <Text style={styles.tripDestination}>
@@ -115,7 +142,7 @@ const MyTripsScreen = ({ navigation }) => {
       <View style={styles.tripActions}>
         <TouchableOpacity 
           style={styles.actionButton}
-          onPress={() => navigation.navigate('EditTrip', { trip: item })}
+          onPress={() => navigateToEditTrip(item)}
         >
           <Ionicons name="create" size={20} color="#2196F3" />
         </TouchableOpacity>

@@ -7,9 +7,9 @@ import GenresScreen from '../screens/GenerosScreen';
 import StackNavigator from './StackNavigator';
 // Import nuevas pantallas de viajes
 import TravelHomeScreen from '../screens/HomeScreen';
-import MyTripsScreen from '../screens/MyTripsScreen';
 import NewMoveScreen from '../screens/NewMoveScreen';
 import NewTripScreen from '../screens/NewTripScreen';
+import MyTripsStackNavigator from './MyTripsStackNavigator';
 
 const Tab = createBottomTabNavigator();
 
@@ -39,23 +39,25 @@ export default function TabNavigator({navigation}) {
                 }}
             />
             <Tab.Screen 
-                name="TravelHome" 
+                name="TravelHome"
                 component={TravelHomeScreen}
                 options={{
                     headerShown: false,
-                    tabBarIcon: ({color}) => (<Ionicons name='airplane' size={25} color={color}/>),
+                    tabBarIcon: ({ color }) => (<Ionicons name='airplane' size={25} color={color} />),
                     title: 'Viajes'
                 }}
             />
+             {/* ✅ CAMBIAR por MyTripsStackNavigator */}
             <Tab.Screen 
                 name="MyTrips" 
-                component={MyTripsScreen}
+                component={MyTripsStackNavigator} // ← CAMBIAR
                 options={{
-                    headerShown: false,
+                    headerShown: false, // IMPORTANTE
                     tabBarIcon: ({color}) => (<Ionicons name='list' size={25} color={color}/>),
                     title: 'Mis Viajes'
                 }}
             />
+            
             <Tab.Screen 
                 name="NewTrip" 
                 component={NewTripScreen}
