@@ -8,8 +8,10 @@ import ProfileScreen from '../screens/ProfileScreen';
 import SongDetailScreen from '../screens/SongDetailScreen';
 // Import nuevas pantallas de viajes
 import ItemsInBoxScreen from '../screens/ItemsInBoxScreen';
+import NewMaletaScreen from '../screens/NewMaletaScreen';
 import NewMoveScreen from '../screens/NewMoveScreen';
 import NewTripScreen from '../screens/NewTripScreen';
+
 
 const Stack = createNativeStackNavigator();
 
@@ -60,6 +62,8 @@ export default function StackNavigator({navigation}) {
                     headerLeft: (() => openDrawer({navigation}))
                 }}
             />
+
+           <Stack.Screen name="NewMaleta" component={NewMaletaScreen} />
             
            
         </Stack.Navigator>

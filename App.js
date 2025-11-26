@@ -6,12 +6,15 @@ import LoginScreen from './src/screens/auth_users/LogInScreen';
 import RegisterScreen from './src/screens/auth_users/RegisterScreen';
 
 // Main Screens
+import EditTripScreen from './src/screens/EditTripScreen';
 import HomeScreen from './src/screens/HomeScreen';
 import ItemsInBoxScreen from './src/screens/ItemsInBoxScreen';
 import MyTripsScreen from './src/screens/MyTripsScreen';
+import NewMaletaScreen from './src/screens/NewMaletaScreen';
 import NewMoveScreen from './src/screens/NewMoveScreen';
 import NewTripScreen from './src/screens/NewTripScreen';
 import SettingScreen from './src/screens/SettingScreen';
+import TripDetailScreen from './src/screens/TripDetailScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -60,6 +63,24 @@ export default function App() {
         <Stack.Screen 
           name="Setting" 
           component={SettingScreen}
+          options={{ headerShown: false }}
+        />
+
+        <Stack.Screen 
+          name="NewMaleta" 
+          component={NewMaletaScreen}
+          options={{ headerShown: false }}
+        />
+
+        <Stack.Screen 
+          name="EditTrip" 
+          component={EditTripScreen}
+          options={{ headerShown: false }}
+        />
+
+        <Stack.Screen 
+          name="TripDetail" 
+          component={TripDetailScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
